@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "freetoken"
+version = "0.1.0"
+description = "Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution (arXiv:2608.16157)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [
+    { name = "FlashML-org Authors & Implementers" },
+]
+keywords = [
+    "mixture-of-experts",
+    "edge-serving",
+    "llm-inference",
+    "bandwidth-adaptive",
+    "q-star-policy",
+    "deepseek",
+    "gpu-offloading"
+]
+dependencies = [
+    "torch>=2.2.0",
+    "numpy>=1.24.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "rich>=13.0.0",
+    "typer>=0.9.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.24.0"
+]
+accel = [
+    "safetensors>=0.4.0",
+    "accelerate>=0.26.0"
+]
+
+[project.scripts]
+freetoken = "freetoken.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/freetoken"]
